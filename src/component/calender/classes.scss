@@ -1,0 +1,17 @@
+span.ripple {
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    aspect-ratio: 1/1;
+    width: 4px;
+    animation: ripple 600ms linear;
+    background-color: rgba(255, 255, 255, 0.898);
+    z-index: 99999;
+  }
+  
+  @keyframes ripple {
+    to {
+      transform: scale(100);
+      opacity: 0;
+    }
+  }

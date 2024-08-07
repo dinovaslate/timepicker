@@ -1,0 +1,177 @@
+@import url(../../config/Fonts/TTcommons.scss);
+*{
+    box-sizing: border-box;
+}
+.inputTime{
+    padding: 0.5rem;
+    font-family: TTCommons;
+    font-weight: 600;
+    font-size: 18px;
+    outline: none;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    cursor: pointer;
+}
+@mixin cornerButton(){
+    color: #5151FB;
+    font-weight: bold;
+    position: absolute;
+    cursor: pointer;
+    width: 40px;
+    height: 25px;
+    overflow: hidden;
+    vertical-align: middle;
+    text-align: center;
+    transition: 350ms;
+    &:hover{
+        color: white !important;
+    }
+    @content;
+}
+.inputBox{
+    position: absolute;
+    width: 400px;
+    height: 300px;
+    margin-top: 1rem;
+    background-color: var(--background);
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-start;
+    column-gap: 30%;
+    flex-wrap: nowrap;
+    padding-top: 10%;
+    padding-left: 50%;
+    transition: 500ms cubic-bezier(1, 0.11, 0.23, 1.28);
+    visibility: var(--visibility);
+    opacity: var(--opacity);
+    
+    .clock{
+       filter: Invert(var(--invert, 0));
+       background-color:darken($color: #fff, $amount: 9%) ;
+       min-width: 250px;
+       height: 250px;
+       position: relative;
+       border-radius: 50%;
+       border: 10px solid darken($color: #fff, $amount: 6%) ;
+       transform: translateX(var(--translate, 0));
+       transition: 500ms cubic-bezier(1, 0.11, 0.23, 1.28);
+       .number{
+           position: absolute;
+           font-family: TTCommons;
+           width: 27px;
+            height: 45%;
+            left: 50%;
+            transform-origin: bottom;
+            transform: translateX(-50%);
+            top: 5%;
+           text-align: center;         
+       }
+       @for $i from 0 through 11{
+           .number#{$i}{
+            transform: translateX(-50%) rotate(30deg * $i);
+            z-index: 9999;
+            transition: 500ms cubic-bezier(1, 0.11, 0.23, 1.28);
+            &::before{
+               content: "";
+               display: inline-block;
+               width: 1px;
+               position: absolute;
+               top: -9px;
+               transform: translateX(5px);
+               height: 6px;
+               background-color: darken($color: #fff, $amount: 30%);
+            }
+           }
+       }
+       .clock-center{
+           width: 43px;
+           top: 50%;
+           left: 50%;
+           transform: translate(-50%, -50%);
+           aspect-ratio: 1/1;
+           background-color: darken($color: #fff, $amount: 2%);
+           position: absolute;
+           border-radius: 50%;
+       }
+       .hand{
+           position: absolute;
+           bottom: 50%;
+           left: 50%;
+           width: 8px;
+           height: 37%;
+           background-color: black;
+           transform-origin: bottom;
+           transform: translateX(-50%) rotate(var(--rotate, 0));
+           transition: 500ms cubic-bezier(1, 0.11, 0.23, 1.28);
+           z-index: 2;
+           border-radius: 3px;
+           &::after{
+               content: "";
+               border-radius:50% ;
+               display: inline-block;
+               width: 23px;
+               aspect-ratio: 1/1;
+               background-color: black;
+               position: absolute;
+               top: 0;
+               right: 50%;
+               transform: translate(50%, -90%);
+           }
+           &::before{
+               content: "";
+               display: inline-block;
+               width: 10px;
+               aspect-ratio: 1/1;
+               border-radius: 50%;
+               background-color: black;
+               position: absolute;
+               bottom: 0;
+               right: 50%;
+               transform: translate(50%, 50%);
+           }
+       }
+    }
+    .lmao{
+        @include cornerButton(){
+            bottom: 1rem;
+            right: 1.3rem;
+            color: var(--unactive-text) !important;
+        }
+        
+    }
+    .lmao2{
+        @include cornerButton(){
+            bottom: 1rem;
+            left: 1.3rem;
+            color: var(--unactive-text) !important;
+        }
+    }
+    .am{
+        @include cornerButton(){
+            top: 1rem;
+            left: 1.3rem;
+            padding-top: 5px;
+            color: var(--unactive-text) !important;
+        }
+        &.active{
+            background-color: var(--background-text);
+            border-radius: 10px;
+            color: white !important;
+        }
+    }
+    .pm{
+        @include cornerButton(){
+            top: 1rem;
+            right: 1.3rem;
+            padding-top: 5px;
+            color: var(--unactive-text) !important;
+        }
+        &.active{
+            background-color: var(--background-text);
+            border-radius: 10px;
+            color: white !important;
+        }
+    }
+}
+

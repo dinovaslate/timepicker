@@ -1,0 +1,45 @@
+/* main{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 0 10px;
+  grid-auto-rows: 10px;
+} */
+$main: #cccc;
+*, *::after, *::before{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+@mixin flex($content : flex-start, $items : flex-start, $direction: row) {
+  display: flex;
+  align-items:$items ;
+  justify-content: $content;
+  flex-direction: row;
+}
+body{
+  background-color: lighten($main, 5%);
+  margin: 10px;
+}
+main{
+    @include flex();
+}
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
