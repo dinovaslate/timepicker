@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import styles from './Calender.module.scss';
-import lodash from 'lodash';
+import _ from 'lodash';
 const Content = ({
   Year,
   Date,
